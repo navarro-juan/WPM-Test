@@ -8,14 +8,26 @@
 
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, rgb(0, 99, 145) 0%, rgb(0, 65, 95) 100%);
+    background: linear-gradient(135deg, rgb(2, 90, 10) 0%, rgb(1, 10, 14) 100%);
     color: #ffffff;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem;
 }
-
+.title {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0rem;
+    color: rgb(219, 219, 219);}
+.results {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    color: rgb(219, 219, 219);
+}
 .container {
     width: 90%;
     max-width: 1200px;
