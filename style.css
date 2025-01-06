@@ -1,43 +1,195 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin-top: 50px;
-    background-color: rgb(0, 99, 145);
-    color:#ffffff
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgb(0, 99, 145) 0%, rgb(0, 65, 95) 100%);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Styles */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Stats Grid */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+/* Text Areas */
 #text-display {
-    margin: 20px auto;
-    width: 60%;
+    width: 100%;
+    background: rgba(243, 243, 243, 0.95);
+    color: #333;
+    padding: 2rem;
+    border-radius: 15px;
     font-size: 1.5rem;
-    padding: 10px;
-    border: px solid #ccc;
-    background-color: #f3f3f3;
-    color: rgb(0, 0, 0);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 }
 
 #text-input {
-    width: 60%;
-    height: 100px;
+    width: 100%;
+    height: 150px;
+    padding: 1.5rem;
     font-size: 1.2rem;
-    margin-top: 20px;
-    background-color:rgb(250, 250, 250);
-    
+    line-height: 1.6;
+    border: none;
+    border-radius: 15px;
+    background: rgba(250, 250, 250, 0.95);
+    resize: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-#results p {
-    font-size: 1.2rem;
+#text-input:focus {
+    outline: none;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
 }
-#start-btn {
-    bottom: auto;
-    left: 40px;
-    
 
-    color: rgb(15, 15, 15);
+#text-input:disabled {
+    background: rgba(250, 250, 250, 0.7);
+    cursor: not-allowed;
 }
+
+/* Buttons */
+.buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
 button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 50px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+#start-btn {
+    background: #ffffff;
+    color: rgb(0, 99, 145);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#random-paragraph-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    backdrop-filter: blur(10px);
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    #text-display {
+        font-size: 1.2rem;
+        padding: 1.5rem;
+    }
+
+    #text-input {
+        font-size: 1.1rem;
+        height: 120px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .stat-box {
+        padding: 1rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container > * {
+    animation: fadeIn 0.5s ease forwards;
 }
