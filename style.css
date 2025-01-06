@@ -134,29 +134,22 @@ button {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 500;
-}
-
-#start-btn {
-    background: #ffffff;
-    color: rgb(0, 99, 145);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-#random-paragraph-btn {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1); /* Shared translucent style */
     color: #ffffff;
     backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 2, 17, 0.719);
 }
 
 button:active {
     transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.05);
 }
-
 /* Responsive Design */
 @media (max-width: 768px) {
     body {
@@ -183,6 +176,8 @@ button:active {
 
     button {
         width: 100%;
+        padding: 1rem;
+        margin-bottom: .2rem;
     }
 
     .stat-box {
