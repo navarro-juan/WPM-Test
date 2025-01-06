@@ -32,6 +32,7 @@ class TypingTest {
             accuracyDisplay: document.getElementById("accuracy"),
             totalCharactersDisplay: document.getElementById("total-characters"),
             startButton: document.getElementById("start-btn"),
+            stopButton: document.getElementById("stop-btn"), // Added stop button
             randomButton: document.getElementById("random-paragraph-btn"),
             typewriterSound: document.getElementById('typewriter-sound')
         };
@@ -41,6 +42,7 @@ class TypingTest {
 
     initializeEventListeners() {
         this.elements.startButton.addEventListener('click', () => this.startTest());
+        this.elements.stopButton.addEventListener('click', () => this.stopTest()); // Stop button event listener
         this.elements.randomButton.addEventListener('click', () => this.loadRandomParagraph());
         this.elements.textInput.addEventListener('input', () => this.handleInput());
     }
@@ -51,6 +53,20 @@ class TypingTest {
         this.loadParagraph();
         this.startTimer();
         this.elements.textInput.focus();
+    }
+
+    stopTest() {
+        // Clear the timer and reset state
+        clearInterval(this.state.timerInterval);
+        this.state.timerInterval = null;
+        this.state.isTestActive = false;
+
+        // Reset displays and input
+        this.elements.textInput.value = "";
+        this.elements.textDisplay.innerText = "Test stopped. Press 'Start Test' to begin again.";
+        this.updateDisplays({ wpm: 0, accuracy: 0, characters: 0, time: 0 });
+
+        alert("Test has been stopped.");
     }
 
     resetStats() {
@@ -82,7 +98,7 @@ class TypingTest {
     }
 
     handleInput() {
-        this.playTypewriterSound();
+       
         this.updateStats();
         this.checkCompletion();
     }
@@ -136,11 +152,9 @@ class TypingTest {
 
         if (!isComplete) return;
 
-        // Stop the timer
         clearInterval(this.state.timerInterval);
         this.state.timerInterval = null;
 
-        // Show stats in a pop-up
         const stats = {
             wpm: this.calculateWPM(),
             accuracy: this.calculateAccuracy(),
@@ -150,7 +164,6 @@ class TypingTest {
 
         alert(`Paragraph Complete!\n\nWPM: ${stats.wpm}\nAccuracy: ${stats.accuracy}%\nCharacters Typed: ${stats.characters}\nTime Taken: ${stats.time} seconds`);
 
-        // Reset or proceed to next paragraph
         this.state.currentParagraphIndex++;
         if (this.state.currentParagraphIndex >= this.paragraphs.length) {
             alert("All paragraphs completed! Restarting from the first.");
